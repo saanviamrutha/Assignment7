@@ -1,0 +1,92 @@
+\documentclass{beamer}
+\usepackage{xspace}
+
+ \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}
+\usetheme{CambridgeUS}
+
+\title{Assignment 7:Papoulis Chapter 9}
+\author{Saanvi Amrutha-AI21BTECH11026}
+\date{\today}
+\logo{\large \LaTeX{}}
+
+\usepackage{amsmath}
+\setbeamertemplate{caption}[numbered]{}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\begin{document}
+
+\begin{frame}
+    \titlepage 
+\end{frame}
+
+\logo{}
+
+\begin{frame}{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{Question}
+\begin{frame}{Question}
+    \begin{block}{}
+       Show that 
+       \begin{enumerate} 
+       \item if $R_x[m_1,m_2]= q[m_1]\delta[m_1 - m_2]$ and $s=\sum_{n=0}^N a_n x[n]$ then $E\cbrak{s^2}=\sum_{n=0}^N a_n^2q[n]$\\
+       \item if $R_x\brak{t_1,t_2}=q\brak{t_1}\delta\brak{t_1-t_2}$ and $s=\int_{0}^{T}a\brak{t}x\brak{t}dt$ then 
+       $E\cbrak{s^2}=\int_{0}^{T}a^2\brak{t}q\brak{t}dt$
+       \end{enumerate}
+    \end{block}
+\end{frame}
+
+\section{Solution}
+\begin{enumerate}
+\begin{frame}
+\frametitle{Solving(a)}
+    \item Given that 
+    \begin{align}
+        s&=\sum_{n=0}^N a_n x[n]\\
+        s^2&=\sum_{n=0}^N a_n x[n]\sum_{n=0}^N a_n x[n]\\
+        &=\sum_{n=0}^N a_n x[n]\sum_{m=0}^N a_m x[m]\\
+        &=\sum_{n=0}^N\sum_{m=0}^Na_n a_m x[n]x[m]
+    \end{align}
+\end{frame}
+\begin{frame}
+    \begin{align}
+        E\cbrak{s^2}&=\sum_{n=0}^N\sum_{m=0}^Na_n a_m E\cbrak{x[n]x[m]}
+    \end{align}
+    From,
+     \begin{align}           E\cbrak{x[m_1]x[m_2]}&=R_x[m_1,m_2]\\
+        E\cbrak{s^2}&=\sum_{n=0}^N\sum_{m=0}^Na_n a_m R_x[n,m]\\
+       &=\sum_{n=0}^N\sum_{m=0}^Na_n a_m q[n]\delta[n - m]\\
+        &=\sum_{n=0}^N a_n^2 q[n]
+    \end{align}
+\end{frame}
+
+\begin{frame}
+\frametitle{Solving(b)}
+    \item Given that 
+    \begin{align}
+        s&=\int_0^T a\brak{t}x\brak{t}dt\\
+        s^2&=\int_0^T a\brak{t}x\brak{t}dt\int_0^T a\brak{t}x\brak{t}dt\\
+        &=\int_0^T a\brak{t}x\brak{t}dt\int_0^T a\brak{k}x\brak{k}dk\\
+        &=\int_0^T\int_0^T a\brak{t}a\brak{k}x\brak{t}x\brak{k}dk dt 
+    \end{align}
+\end{frame}
+
+\begin{frame}
+    \begin{align}
+        E\cbrak{s^2}&=\int_0^T\int_0^T a\brak{t}a\brak{k}E\cbrak{x\brak{t}x\brak{k}}dk dt
+    \end{align}
+    From,
+     \begin{align}           E\cbrak{x\brak{t_1}x\brak{t_2}}&=R_x\brak{t_1,t_2}\\
+     E\cbrak{s^2}&=\int_0^T\int_0^T a\brak{t}a\brak{k}R_x\brak{t_1,t_2}dk dt\\
+     &=\int_0^T\int_0^T a\brak{t}a\brak{k}q\brak{t}\delta\brak{t-k}dk dt\\
+     &=\int_0^Ta^2\brak{t}q\brak{t}dt
+    \end{align}
+    Hence proved.
+\end{frame}
+\end{enumerate}
+\end{document}
